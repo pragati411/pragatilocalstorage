@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body></body>
+</html>
+
+<script>
+  var city = "XYZ";
+  const profile = {
+    name: "Ankit",
+    city: "Morena",
+    getName: function () {
+      return this.name;
+    },
+    getCity(a, b) {
+      console.log("getCity This: ", this, a, b);
+      return this.city;
+    },
+    getUserDetails: () => {
+      return this.city;
+    },
+  };
+
+  //console.log("1: ", profile.getCity());
+  const getCty = profile.getCity.bind(
+    { name: "Superman", city: "NYC" },
+    10,
+    20
+  );
+  console.log("2: ", getCty());
+
+  console.log("@AJ LN37:", profile.getCity.call({ city: "Delhi" }, 1, 2));
+
+  console.log("@AJ LN37:", profile.getCity.apply({ city: "Pune" }, [1, 2]));
+</script>

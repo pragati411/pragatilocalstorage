@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body></body>
+</html>
+<script>
+  const getMenu = () => {
+    return new Promise((reply, reject) => {
+      setTimeout(() => {
+        reply({ message: "Menu is given to the user" });
+      }, 7000);
+    });
+  };
+
+  const orderingFood = (food, tableNo) => {
+    return new Promise((reply, reject) => {
+      setTimeout(() => {
+        reply(
+          {
+            food,
+            tableNo,
+            message: "Ordering food is done. Now preparing the food",
+          },
+          9000
+        );
+
+        reply({
+          food,
+          tableNo,
+          message: "Ordering food is done. Now preparing the food",
+        });
+      }, 0);
+    });
+  };
+
+  const foodIsBeingPrepared = () => {
+    return new Promise((reply, reject) => {
+      setTimeout(() => {
+        reply({
+          message: "Food preparation is in done. Preparing to serve now",
+        });
+      }, 3000);
+    });
+  };
+
+  // Using then method
+  const promises = [
+    getMenu(),
+    orderingFood("pav bhaji", 21),
+    foodIsBeingPrepared(),
+  ];
+  Promise.all(promises)
+    .then((data) => console.log("Data: ", data))
+    .catch((err) => console.log("Err: ", err));
+</script>

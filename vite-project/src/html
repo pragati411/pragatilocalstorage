@@ -1,0 +1,61 @@
+import React, { useState } from 'react';
+
+function Card({ profile, like }) {
+  const [liked, setLiked] = useState(false);
+
+  const handleLike = () => {
+    setLiked(!liked);
+    like(profile.id);
+  };
+
+  return (
+    <div className="card">
+      <h2>{profile.name}</h2>
+      <p>{profile.bio}</p>
+      <button onClick={handleLike}>
+        {liked ? 'Unlike' : 'Like'}
+      </button>
+    </div>
+  );
+}
+
+function CardList({ profiles, like }) {
+  return (
+    <div className="card-list">
+      {profiles.map(profile => (
+        <Card key={profile.id} profile={profile} like={like} />
+      ))}
+    </div>
+  );
+}
+
+function App() {
+  const [profiles, setProfiles] = useState([
+    {
+      id: 1,
+      name: 'Alice',
+      bio: 'I am a software developer.'
+    },
+    {
+      id: 2,
+      name: 'Bob',
+      bio: 'I am a designer.'
+    },
+    {
+      id: 3,
+      name: 'Charlie',
+      bio: 'I am a writer.'
+    },
+  ]);
+
+  const like = (id) => {
+    // You can add code here to handle liking a profile,
+    // such as making an API call to update the database
+  };
+
+  return (
+    <CardList profiles={profiles} like={like} />
+  );
+}
+
+export default App;
